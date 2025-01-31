@@ -10,104 +10,113 @@ class SellerAccount extends StatelessWidget {
       builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: isDarkMode ? Colours.darkmode : Colors.white,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
-                      ),
-                      child: Image.asset(
-                        item["image"]!,
-                        width: double.infinity,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: IconButton(
-                        icon: const Icon(Icons.close, color: Colors.white),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          child: SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.9,
+                maxWidth: MediaQuery.of(context).size.width * 0.9,
+              ),
+              decoration: BoxDecoration(
+                color: isDarkMode ? Colours.darkmode : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
                     children: [
-                      Text(
-                        item["title"]!,
-                        style: TextStyle(
-                          color: isDarkMode ? Colors.white : Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
+                        child: Image.asset(
+                          item["image"]!,
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        item["subtitle"]!,
-                        style: TextStyle(
-                          color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      // Add more details here as needed
-                      DetailRow(
-                        icon: Icons.diamond_outlined,
-                        title: "Quality",
-                        value: "AAA Grade",
-                        isDarkMode: isDarkMode,
-                      ),
-                      const SizedBox(height: 8),
-                      DetailRow(
-                        icon: Icons.balance,
-                        title: "Weight",
-                        value: "3.5 Carats",
-                        isDarkMode: isDarkMode,
-                      ),
-                      const SizedBox(height: 8),
-                      DetailRow(
-                        icon: Icons.public,
-                        title: "Origin",
-                        value: "Tanzania",
-                        isDarkMode: isDarkMode,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        "Description",
-                        style: TextStyle(
-                          color: isDarkMode ? Colors.white : Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Natural sapphire with excellent clarity and color. Perfect for premium jewelry pieces.",
-                        style: TextStyle(
-                          color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
-                          fontSize: 16,
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: IconButton(
+                          icon: const Icon(Icons.close, color: Colors.white),
+                          onPressed: () => Navigator.of(context).pop(),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item["title"]!,
+                              style: TextStyle(
+                                color: isDarkMode ? Colors.white : Colors.black,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              item["subtitle"]!,
+                              style: TextStyle(
+                                color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
+                                fontSize: 18,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            DetailRow(
+                              icon: Icons.diamond_outlined,
+                              title: "Quality",
+                              value: "AAA Grade",
+                              isDarkMode: isDarkMode,
+                            ),
+                            const SizedBox(height: 8),
+                            DetailRow(
+                              icon: Icons.balance,
+                              title: "Weight",
+                              value: "3.5 Carats",
+                              isDarkMode: isDarkMode,
+                            ),
+                            const SizedBox(height: 8),
+                            DetailRow(
+                              icon: Icons.public,
+                              title: "Origin",
+                              value: "Tanzania",
+                              isDarkMode: isDarkMode,
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              "Description",
+                              style: TextStyle(
+                                color: isDarkMode ? Colors.white : Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              "Natural sapphire with excellent clarity and color. Perfect for premium jewelry pieces.",
+                              style: TextStyle(
+                                color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -137,7 +146,7 @@ class SellerAccount extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           
+
             Container(
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(20),
