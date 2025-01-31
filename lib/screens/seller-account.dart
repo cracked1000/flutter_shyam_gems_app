@@ -137,7 +137,7 @@ class SellerAccount extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Section (Unchanged)
+           
             Container(
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(20),
@@ -235,7 +235,7 @@ class SellerAccount extends StatelessWidget {
               ),
             ),
 
-            // Gallery Section
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -248,7 +248,7 @@ class SellerAccount extends StatelessWidget {
               ),
             ),
 
-            // Gallery Grid
+
             Padding(
               padding: const EdgeInsets.all(16),
               child: LayoutBuilder(
@@ -346,7 +346,6 @@ class SellerAccount extends StatelessWidget {
               ),
             ),
 
-            // Upload Button
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16),
@@ -379,7 +378,6 @@ class SellerAccount extends StatelessWidget {
   }
 }
 
-// Helper widget for detail rows in the dialog
 class DetailRow extends StatelessWidget {
   final IconData icon;
   final String title;
