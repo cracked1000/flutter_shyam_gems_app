@@ -19,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _selectedRole;
 
   void _handleLogin() {
-    // Validate inputs
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all fields')),
@@ -34,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Navigate to appropriate dashboard based on role
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -47,7 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Check the current theme mode
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
@@ -118,7 +115,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        // Add forgot password navigation
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Forgot Password clicked')),
                         );
@@ -133,7 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Role selection buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -170,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Login Button
+
                   ElevatedButton(
                     onPressed: _handleLogin,
                     style: ElevatedButton.styleFrom(
@@ -187,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Sign Up link
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

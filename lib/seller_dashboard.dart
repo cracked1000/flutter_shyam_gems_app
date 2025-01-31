@@ -15,13 +15,11 @@ class SellerDashboard extends StatefulWidget {
 
 class _SellerDashboardState extends State<SellerDashboard> {
   int _selectedIndex = 0;
-
-  // Reference your screens from separate files
   final List<Widget> _screens = [
-     SellerAccount(), // This can be in seller_home.dart
-     Feedpage(),       // From feed.dart
-     Settingspage(),   // From settings.dart
-     InboxPage(),      // From inbox.dart
+     SellerAccount(),
+     Feedpage(),
+     Settingspage(),
+     InboxPage(),
   ];
 
   @override

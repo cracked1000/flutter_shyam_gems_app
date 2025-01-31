@@ -5,7 +5,7 @@ import 'package:shyam_gems_app/screens/login_screen.dart';
 class Settingspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Check the current theme mode
+
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
@@ -27,7 +27,6 @@ class Settingspage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Account Settings Block
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
               child: Column(
@@ -53,7 +52,6 @@ class Settingspage extends StatelessWidget {
               ),
             ),
 
-            // More Settings Block
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
@@ -80,7 +78,7 @@ class Settingspage extends StatelessWidget {
               ),
             ),
 
-            // Logout Button
+
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 8, 10, 20),

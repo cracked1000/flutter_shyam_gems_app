@@ -17,7 +17,6 @@ class _PostRequirementScreenState extends State<PostRequirementScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Check the current theme mode
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 

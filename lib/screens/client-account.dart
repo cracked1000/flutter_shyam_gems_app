@@ -6,7 +6,6 @@ class ClientAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check the current theme mode
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
@@ -27,7 +26,6 @@ class ClientAccount extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 20),
-              // Profile Icon
               Container(
                 width: 80,
                 height: 80,
@@ -44,7 +42,6 @@ class ClientAccount extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 40),
-                  // Profile Card
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 15),
                     height: 200,
@@ -120,7 +117,6 @@ class ClientAccount extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  // Edit Button
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

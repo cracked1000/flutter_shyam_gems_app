@@ -10,5 +10,4 @@ class Colours{
   static const Color primary_shade= Color(0xff785c5b);
   static const Color Appbar_darkmode= Color(0xff4a4747);
   static const Color Navbar_background= Color(0xffefe8c4);
-
 }

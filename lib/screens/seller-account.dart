@@ -4,9 +4,119 @@ import 'package:shyam_gems_app/colours.dart';
 class SellerAccount extends StatelessWidget {
   const SellerAccount({super.key});
 
+  void _showImageDetail(BuildContext context, Map<String, String> item, bool isDarkMode) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: isDarkMode ? Colours.darkmode : Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                      ),
+                      child: Image.asset(
+                        item["image"]!,
+                        width: double.infinity,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: IconButton(
+                        icon: const Icon(Icons.close, color: Colors.white),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item["title"]!,
+                        style: TextStyle(
+                          color: isDarkMode ? Colors.white : Colors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        item["subtitle"]!,
+                        style: TextStyle(
+                          color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      // Add more details here as needed
+                      DetailRow(
+                        icon: Icons.diamond_outlined,
+                        title: "Quality",
+                        value: "AAA Grade",
+                        isDarkMode: isDarkMode,
+                      ),
+                      const SizedBox(height: 8),
+                      DetailRow(
+                        icon: Icons.balance,
+                        title: "Weight",
+                        value: "3.5 Carats",
+                        isDarkMode: isDarkMode,
+                      ),
+                      const SizedBox(height: 8),
+                      DetailRow(
+                        icon: Icons.public,
+                        title: "Origin",
+                        value: "Tanzania",
+                        isDarkMode: isDarkMode,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        "Description",
+                        style: TextStyle(
+                          color: isDarkMode ? Colors.white : Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Natural sapphire with excellent clarity and color. Perfect for premium jewelry pieces.",
+                        style: TextStyle(
+                          color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Check the current theme mode
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
@@ -27,7 +137,7 @@ class SellerAccount extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Card
+            // Profile Section (Unchanged)
             Container(
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(20),
@@ -40,23 +150,19 @@ class SellerAccount extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      // Profile Picture
                       Container(
                         width: 60,
                         height: 60,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(
-                              color: Colors.yellow[700]!, width: 2),
+                          border: Border.all(color: Colors.yellow[700]!, width: 2),
                         ),
                         child: const CircleAvatar(
                           backgroundColor: Colors.transparent,
-                          child: Icon(
-                              Icons.person, color: Colors.yellow, size: 40),
+                          child: Icon(Icons.person, color: Colors.yellow, size: 40),
                         ),
                       ),
                       const SizedBox(width: 15),
-                      // Name and Username
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -78,7 +184,6 @@ class SellerAccount extends StatelessWidget {
                         ],
                       ),
                       const Spacer(),
-                      // Edit Button
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
@@ -87,8 +192,7 @@ class SellerAccount extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: isDarkMode ? Colours.darkmode : Colours.primary,
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: Colors.white.withOpacity(0.3)),
+                          border: Border.all(color: Colors.white.withOpacity(0.3)),
                         ),
                         child: Text(
                           "EDIT",
@@ -100,7 +204,6 @@ class SellerAccount extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 15),
-                  // Experience
                   Row(
                     children: [
                       Text(
@@ -121,7 +224,6 @@ class SellerAccount extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  // Location
                   Text(
                     "Sourcing gems from tanzania",
                     style: TextStyle(
@@ -146,12 +248,11 @@ class SellerAccount extends StatelessWidget {
               ),
             ),
 
-            // Gallery Grid with unique items
+            // Gallery Grid
             Padding(
               padding: const EdgeInsets.all(16),
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  // Adjust the crossAxisCount based on screen width
                   final crossAxisCount = constraints.maxWidth > 600 ? 4 : 3;
                   return GridView.builder(
                     shrinkWrap: true,
@@ -161,9 +262,8 @@ class SellerAccount extends StatelessWidget {
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
                     ),
-                    itemCount: 3, // Number of gallery items
+                    itemCount: 3,
                     itemBuilder: (context, index) {
-                      // Define your gallery items here
                       final List<Map<String, String>> galleryItems = [
                         {
                           "image": "Assets/Images/Blue_Sapphire_gemstone.jpg",
@@ -183,58 +283,61 @@ class SellerAccount extends StatelessWidget {
                       ];
 
                       final item = galleryItems[index];
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.asset(
-                                item["image"]!,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height: double.infinity,
+                      return GestureDetector(
+                        onTap: () => _showImageDetail(context, item, isDarkMode),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(
+                                  item["image"]!,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.7),
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(8),
-                                    bottomRight: Radius.circular(8),
+                              Positioned(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.7),
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        item["title"]!,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        item["subtitle"]!,
+                                        style: const TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      item["title"]!,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      item["subtitle"]!,
-                                      style: const TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 10,
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -272,6 +375,51 @@ class SellerAccount extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+// Helper widget for detail rows in the dialog
+class DetailRow extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String value;
+  final bool isDarkMode;
+
+  const DetailRow({
+    required this.icon,
+    required this.title,
+    required this.value,
+    required this.isDarkMode,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 20,
+          color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
+        ),
+        const SizedBox(width: 8),
+        Text(
+          "$title: ",
+          style: TextStyle(
+            color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
+            fontSize: 16,
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(
+            color: isDarkMode ? Colors.white : Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 }

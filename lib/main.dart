@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Hides the debug banner
-      theme: ThemeData.light(), // Light mode
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
       home: LoginScreen(),
     );
   }

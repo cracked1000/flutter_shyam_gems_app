@@ -16,13 +16,11 @@ class ClientDashboard extends StatefulWidget {
 
 class _ClientDashboardState extends State<ClientDashboard> {
   int _selectedIndex = 0;
-
-  // Reference your screens from separate files
   final List<Widget> _screens = [
-    ClientAccount(), // This can be in seller_home.dart
-    Feedpage(),       // From feed.dart
-    Settingspage(),   // From settings.dart
-    InboxPage(),      // From inbox.dart
+    ClientAccount(),
+    Feedpage(),
+    Settingspage(),
+    InboxPage(),
   ];
 
   @override
@@ -33,7 +31,8 @@ class _ClientDashboardState extends State<ClientDashboard> {
         height: 65,
         backgroundColor: Colours.Navbar_background,
         indicatorColor: Colours.secondary
-      ), child: NavigationBar(
+      ), child: NavigationBar
+        (
         selectedIndex: _selectedIndex,
         onDestinationSelected: (index) {
           setState(() {
